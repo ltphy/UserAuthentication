@@ -1,0 +1,16 @@
+.wrapper {
+  height: 700px;
+  overflow: auto;
+  padding: 20px;
+  .menu_container {
+    padding: 7px 12px;
+    border: 1px solid #afafaf;
+    position: relative;
+
+  }
+  .info_container{
+    padding: 7px 12px;
+    border: 1px solid #afafaf;
+    position: relative;
+  }
+}
