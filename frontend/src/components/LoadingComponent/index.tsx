@@ -6,6 +6,7 @@ import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 
 const LoadingComponent = () => {
     const isSpinnerGlobalSpinnerOn = useContext(GlobalSpinnerContext);
+    console.log(isSpinnerGlobalSpinnerOn);
     return (
         isSpinnerGlobalSpinnerOn ?
             <div className={style.app_loader}>
