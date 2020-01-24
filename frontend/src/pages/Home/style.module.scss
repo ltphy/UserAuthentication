@@ -1,16 +1,13 @@
 .wrapper {
-  height: 700px;
   overflow: auto;
-  padding: 20px;
   .menu_container {
     padding: 7px 12px;
-    border: 1px solid #afafaf;
+    border-right: 1px solid #ececec;
     position: relative;
-
+    background-color:#f7f7f7;
   }
   .info_container{
-    padding: 7px 12px;
-    border: 1px solid #afafaf;
+    padding: 2rem 4rem;
     position: relative;
   }
 }

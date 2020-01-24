@@ -7,6 +7,7 @@ import {UserInfo} from "../../models/user_info.model";
 import LoadingService from "../../services/loading.service";
 import { API } from './home.constant';
 import {GlobalSpinnerActionContext} from "../../context/loading.context";
+import {withRouter} from "react-router-dom";
 
 const Home = () => {
     const [modal, showModal] = useState(false);
@@ -14,6 +15,7 @@ const Home = () => {
     const [listUserInfo, updateListUserInfo] = useState<UserInfo[]>(userInfoList);
     const setGlobalSpinner  = useContext(GlobalSpinnerActionContext);
     const [user,setUser] = useState<string>('');
+
      const showNavModal = () => {
         showModal(true);
     }
@@ -59,4 +61,4 @@ const Home = () => {
         </Container>
     );
 }
-export default Home;
+export default withRouter(Home);

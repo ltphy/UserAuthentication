@@ -1,6 +1,7 @@
 import Home from "../pages/Home";
+import Contact from "../pages/Contact";
 
-export interface Router {
+export interface IRouter {
     component:any;
     isPrivate:boolean,
     title:string,
@@ -8,12 +9,20 @@ export interface Router {
     path:string,
 };
 
-const routes:Router[] = [
+export const routes:IRouter[] = [
     {
         component: Home,
         isPrivate:false,
         title:"Home",
         showHeaderNavBar:true,
-        path:"/home",
+        path:"/",
     },
+    {
+        component: Contact,
+        isPrivate:false,
+        title:"Contact",
+        showHeaderNavBar:true,
+        path:"/contact"
+    }
+
 ];
