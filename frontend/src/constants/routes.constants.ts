@@ -1,6 +1,6 @@
-import Home from "../pages/Home";
+import Manga from "../pages/Manga";
 import Contact from "../pages/Contact";
-
+import Home from "../pages/Home";
 export interface IRouter {
     component:any;
     isPrivate:boolean,
@@ -18,11 +18,17 @@ export const routes:IRouter[] = [
         path:"/",
     },
     {
+        component: Manga,
+        isPrivate:false,
+        title:"Manga",
+        showHeaderNavBar:true,
+        path:"/manga"
+    },
+    {
         component: Contact,
         isPrivate:false,
         title:"Contact",
         showHeaderNavBar:true,
         path:"/contact"
     }
-
 ];

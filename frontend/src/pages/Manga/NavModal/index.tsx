@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Modal, Button, Nav, Row, Col, Navbar} from "react-bootstrap";
 import {NavPanel, NavPanels} from "./nav-panel.constant";
 import style from './style.module.scss';
-import {defaultUserInfo} from "../menu.constant";
+import {defaultUserInfo} from "../constants/menu.constant";
 import {UserInfo} from "../../../models/user_info.model";
 
 interface modalProps {

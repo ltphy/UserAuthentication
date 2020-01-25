@@ -1,4 +1,4 @@
-import {UserInfo,UserDescription} from "../../models/user_info.model";
+import {UserInfo,UserDescription} from "../../../models/user_info.model";
 // @ts-ignore
 import uuid from "uuid";
 export const MenuConstant = {

@@ -1,7 +1,4 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import style from './style.module.scss';
-import Home from './pages/Home';
-
 import {GlobalSpinnerProvider} from "./context/loading.context";
 import LoadingComponent from "./components/LoadingComponent";
 import MainLayout from "./layout";
@@ -25,7 +22,7 @@ const App = () => {
                                         <Route path={route.path}
                                                exact={route.path === '/'}
                                                key={index.toString()}
-                                               component={route.component}
+                                               render={route.component}
                                         />
                                     );
                                 }
