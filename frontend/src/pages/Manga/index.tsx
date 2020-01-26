@@ -6,7 +6,6 @@ import {routes, IRouter} from './constants/routes.constant';
 import {LinkContainer} from 'react-router-bootstrap';
 
 const Manga = ({match}: RouteComponentProps) => {
-    console.log(match);
     return (
         <Container fluid>
             <Row className={style.wrapper}>
@@ -15,9 +14,8 @@ const Manga = ({match}: RouteComponentProps) => {
                         routes.map((route, key) => {
 
                             return (
-
                                 <LinkContainer to={`${match.url}${route.path}`} key={key.toString()}>
-                                    <Nav.Link className = {"text-secondary font-weight-"}>{route.title}</Nav.Link>
+                                    <Nav.Link className={"text-secondary font-weight-"}>{route.title}</Nav.Link>
                                 </LinkContainer>
                             );
                         })}
@@ -32,7 +30,7 @@ const Manga = ({match}: RouteComponentProps) => {
                                     <Route path={`${match.url}${route.path}`}
                                            exact={route.path === '/'}
                                            key={index.toString()}
-                                            render={(routeProps:RouteComponentProps)=>(<route.component props ={routeProps}/>)}
+                                           component={route.component}
                                     />
                                 );
                             }
@@ -44,4 +42,4 @@ const Manga = ({match}: RouteComponentProps) => {
         </Container>
     );
 }
-export default Manga;
+export default withRouter(Manga);

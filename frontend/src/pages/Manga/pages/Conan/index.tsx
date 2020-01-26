@@ -7,8 +7,7 @@ import {defaultUserInfo} from "../../constants/menu.constant";
 import {GlobalSpinnerActionContext} from "../../../../context/loading.context";
 import {RouteComponentProps, withRouter} from "react-router";
 
-const Conan = (match:RouteComponentProps) => {
-    console.log(match);
+const Conan = ({match}:RouteComponentProps) => {
     const [modal, showModal] = useState(false);
     const userInfoList: UserInfo[] = [defaultUserInfo, JSON.parse(JSON.stringify(defaultUserInfo))];
     const [listUserInfo, updateListUserInfo] = useState<UserInfo[]>(userInfoList);
