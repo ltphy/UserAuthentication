@@ -25,7 +25,7 @@ const Description = (props: descriptionProps) => {
                             First Name
                         </Form.Label>
                         <Col md={"8"}>
-                            <Form.Control type={"text"} defaultValue={description.firstName} onChange={changeValue}/>
+                            <Form.Control type={"text"} defaultValue={description.firstName} onChange={changeValue} />
                         </Col>
                     </Form.Group>
                 </Form.Group>

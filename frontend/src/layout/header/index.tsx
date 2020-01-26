@@ -1,6 +1,6 @@
 import React from 'react';
 import {LinkContainer} from 'react-router-bootstrap';
-import {Navbar, Nav, Form, Button} from "react-bootstrap";
+import {Navbar, Nav, Form, Button, Col, Row} from "react-bootstrap";
 import {routes, IRouter} from '../../constants/routes.constants';
 import style from './style.module.scss';
 import {withRouter} from 'react-router-dom';
@@ -30,18 +30,34 @@ const Header = () => {
                         })
                     }
                 </Nav>
+
+                <Row className={style.search_wrapper}>
+                    <Col className={style.search_field} md={9}>
+                        <input type="text"
+                               placeholder="Search"
+                               className={style.search_box}
+                               autoComplete="off"
+                               autoCorrect="off"
+                        />
+
+                    </Col>
+                    <Col md={3}>
+                        <button
+                            className={style.btn_wrapper}>
+                            <div className={style.btn_search}>
+                                <FontAwesomeIcon icon={faSearch}/>
+                            </div>
+                        </button>
+                    </Col>
+
+                </Row>
                 <Form inline>
-                    <Form.Control type="text" placeholder="Search"/>
-                    <Button className = {style.btn_search}>
+                    <Form.Control type="text" placeholder="Search" className={"mr-sm-2"}/>
+                    <Button className={style.btn_search}>
                         <FontAwesomeIcon icon={faSearch}/>
                     </Button>
                 </Form>
-                <Form inline>
-                    <Form.Control type="text" placeholder="Search" className="ml-sm-2"/>
-                    <Button>
-                        <FontAwesomeIcon icon={faSearch}/>
-                    </Button>
-                </Form>
+
             </Navbar.Collapse>
         </Navbar>
     );
