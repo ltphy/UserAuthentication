@@ -15,12 +15,13 @@ const App = () => {
                     <Switch>
                         {
                             routes.map((route: IRouter, index: number) => {
+                                console.log(route.path === '/');
                                 if (route.isPrivate) {
                                     return <div></div>
                                 } else {
                                     return (
                                         <Route path={route.path}
-                                               exact={route.path === '/'}
+                                               exact={route.path ==='/'}
                                                key={index.toString()}
                                                render={route.component}
                                         />

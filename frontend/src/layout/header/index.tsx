@@ -1,6 +1,6 @@
 import React from 'react';
 import {LinkContainer} from 'react-router-bootstrap';
-import {Navbar, Nav, Form, Button, Col, Row} from "react-bootstrap";
+import {Navbar, Nav, Form, Button, Col, Row, NavDropdown, FormControl} from "react-bootstrap";
 import {routes, IRouter} from '../../constants/routes.constants';
 import style from './style.module.scss';
 import {withRouter} from 'react-router-dom';
@@ -10,12 +10,14 @@ import {faSearch} from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
     return (
-        <Navbar bg="dark" variant={"dark"} sticky={"top"}>
+        <Navbar bg="dark" expand="lg" variant={"dark"} sticky={"top"}>
             <LinkContainer to="/">
                 <Navbar.Brand className={style.title}>
-                    MC
+                    Manga Characters
                 </Navbar.Brand>
             </LinkContainer>
+            <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className={"mr-auto"}>
                     {
@@ -31,8 +33,8 @@ const Header = () => {
                     }
                 </Nav>
 
-                <Row className={style.search_wrapper}>
-                    <Col className={style.search_field} md={9}>
+                <div className={style.search_wrapper}>
+                    <div className={style.search_field}>
                         <input type="text"
                                placeholder="Search"
                                className={style.search_box}
@@ -40,25 +42,17 @@ const Header = () => {
                                autoCorrect="off"
                         />
 
-                    </Col>
-                    <Col md={3}>
-                        <button
-                            className={style.btn_wrapper}>
-                            <div className={style.btn_search}>
-                                <FontAwesomeIcon icon={faSearch}/>
-                            </div>
-                        </button>
-                    </Col>
-
-                </Row>
-                <Form inline>
-                    <Form.Control type="text" placeholder="Search" className={"mr-sm-2"}/>
-                    <Button className={style.btn_search}>
-                        <FontAwesomeIcon icon={faSearch}/>
-                    </Button>
-                </Form>
-
+                    </div>
+                    <button
+                        className={style.btn_wrapper}>
+                        <div className={style.btn_search}>
+                            <FontAwesomeIcon icon={faSearch}/>
+                        </div>
+                    </button>
+                </div>
             </Navbar.Collapse>
+
+
         </Navbar>
     );
 
