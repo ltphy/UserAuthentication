@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {Modal, Button, Nav, Row, Col, Navbar} from "react-bootstrap";
 import {NavPanel, NavPanels} from "./nav-panel.constant";
 import style from './style.module.scss';
@@ -10,7 +10,8 @@ interface modalProps {
     userInfo: UserInfo;
 
     onHide(): void;
-    updateUserInfoList():void;
+
+    updateUserInfoList(): void;
 
 }
 
@@ -18,12 +19,19 @@ const NavModal = (props: modalProps) => {
     const {modal, onHide} = props;
     const [panel, setPanel] = useState<NavPanel>(NavPanels[0]);
     const [userInfo, setUserInfo] = useState<UserInfo>(props.userInfo);
+    console.log("Modal", modal);
+    useEffect(() => {
+        console.log("use", panel);
+        if (modal) {
+            setPanel(NavPanels[0]);
+        }
+    },[modal]);
 
     const selectPanel = (selectCallback: string) => {
         console.log(selectCallback);
         const selectPanel = NavPanels.filter((panel) => (panel.name === selectCallback)).shift() || NavPanels[0];
         setPanel(selectPanel);
-    }
+    };
 
     const changeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value) {
@@ -31,15 +39,16 @@ const NavModal = (props: modalProps) => {
             console.log(event.target.id);
             const id: string = event.target.id;
             const value: string = event.target.value;
-            userInfo.description[id] = value;
+            (userInfo.description as any)[id] = value;
         }
 
-    }
+    };
+
     const saveValue = () => {
         setUserInfo(userInfo);
-        console.log(userInfo);
         props.updateUserInfoList();
-    }
+    };
+
     return (
         <Modal
             show={modal}
@@ -50,17 +59,18 @@ const NavModal = (props: modalProps) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Modal heading
+                    Enter value
                 </Modal.Title>
             </Modal.Header>
-
 
             <Modal.Body>
                 <Row>
                     <Col md={12} className={style.modal_wrapper}>
-
-                        <Nav variant="tabs" onSelect={(k: string) => selectPanel(k)}
-                             className={style.nav_wrapper}>
+                        <Nav variant="tabs"
+                             onSelect={(k: string) => selectPanel(k)}
+                             className={style.nav_wrapper}
+                             defaultActiveKey={"Description"}
+                        >
                             {
                                 NavPanels.map((panel: NavPanel, index: number) => {
                                     return (
@@ -76,10 +86,7 @@ const NavModal = (props: modalProps) => {
                         </Row>
                     </Col>
                 </Row>
-
-
             </Modal.Body>
-
 
             <Modal.Footer>
                 <Button

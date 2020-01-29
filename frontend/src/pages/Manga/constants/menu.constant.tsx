@@ -7,7 +7,7 @@ export const MenuConstant = {
 export const description:UserDescription = {
 firstName:"phy",
     lastName:"Lieng",
-    email: "phy@zmp.vn",
+    email: "phy@gmail.com",
     selectManga: "Luffy"
 }
 export const defaultUserInfo:UserInfo = {
