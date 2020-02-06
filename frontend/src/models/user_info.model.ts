@@ -7,6 +7,5 @@ export interface UserDescription {
 
 export interface UserInfo {
     description: UserDescription,
-
     id: string,
 }

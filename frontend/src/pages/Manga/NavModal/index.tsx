@@ -19,9 +19,7 @@ const NavModal = (props: modalProps) => {
     const {modal, onHide} = props;
     const [panel, setPanel] = useState<NavPanel>(NavPanels[0]);
     const [userInfo, setUserInfo] = useState<UserInfo>(props.userInfo);
-    console.log("Modal", modal);
     useEffect(() => {
-        console.log("use", panel);
         if (modal) {
             setPanel(NavPanels[0]);
         }
