@@ -17,7 +17,7 @@ const Description = (props: descriptionProps) => {
     }
     const description: UserDescription = props.userInfo.description;
     return (
-        <Form>
+        <Form >
             <Form.Row>
                 <Form.Group as={Col} md={6}>
                     <Form.Group as={Row} controlId={"firstName"}>
@@ -58,6 +58,7 @@ const Description = (props: descriptionProps) => {
 
                 </Form.Control>
             </Form.Group>
+
         </Form>
 
     );

@@ -1,11 +1,24 @@
+.modal_wrapper {
+  width: 1000px;
+  transition: transform .3s ease-in !important;
+  //transform: translate(0,50px)!important;
+}
+
+@media (min-width: 1000px) {
+  .modal_wrapper {
+    width: 80% !important;
+    max-width: 1000px !important;
+  }
+}
 
 .nav_wrapper {
   margin-top: 5px;
 }
+
 .nav_contents {
   width: 100%;
   margin-top: 5px;
   padding: 20px;
-  height: 300px;
+  height: 450px;
   overflow: auto;
 }

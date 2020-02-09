@@ -1,14 +1,18 @@
 .wrapper {
   overflow: auto;
+
   .menu_container {
     padding: 7px 12px;
-    border-right: 1px solid #ececec;
     position: relative;
-    background-color:#f7f7f7;
-    overflow:hidden;
-
+    .link_wrapper {
+      border: 1px solid #ececec;
+      &:not(:first-child) {
+        margin-top:5px
+      }
+    }
   }
-  .info_container{
+
+  .info_container {
     padding: 2rem 4rem;
     position: relative;
   }

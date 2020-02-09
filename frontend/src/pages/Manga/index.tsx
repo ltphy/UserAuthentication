@@ -14,8 +14,8 @@ const Manga = ({match, location}: RouteComponentProps) => {
                     {
                         routes.map((route, key) => {
                             return (
-                                <LinkContainer to={`${match.url}${route.path}`} key={key.toString()}>
-                                    <Nav.Link className={"text-secondary"}>
+                                <LinkContainer to={`${match.url}${route.path}`} key={key.toString()} className={style.link_wrapper}>
+                                    <Nav.Link className={"text-secondary"} >
                                         {route.title}
                                     </Nav.Link>
                                 </LinkContainer>

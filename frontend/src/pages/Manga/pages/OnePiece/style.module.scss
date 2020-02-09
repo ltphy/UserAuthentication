@@ -1,0 +1,64 @@
+.container {
+  padding: 5px;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+
+  .container:hover & {
+    transform: translateX(500px) skewX(25deg);;
+  }
+}
+
+.circle1 {
+  @extend .circle;
+  background-color: blueviolet;
+  transition: all 1.5s linear;
+  transform: skewX(-25deg);
+}
+
+.circle2 {
+  @extend .circle;
+  background-color: aquamarine;
+  transition: all 1.5s ease;
+}
+
+.container1 {
+  padding: 5px;
+}
+
+.square {
+  border-radius: 5%;
+  width: 100px;
+  height: 100px;
+  margin-left: 100px;
+  display: inline-block;
+  .container1:hover & {
+    transform: rotate(360deg) scale(1.5);
+  }
+}
+
+.square1 {
+  @extend .square;
+  background-color: blueviolet;
+  transition: all 1.5s linear ;
+}
+
+.square2 {
+  @extend .square;
+  background-color: aquamarine;
+  transition: all 3s ease-in-out;
+}
+
+.water_drop {
+  border-radius: 80% 5%;
+  background-color: coral;
+  width: 100px;
+  height: 100px;
+  transition: transform 1s linear;
+  &:hover {
+    transform: skewX(45deg);
+  }
+}
