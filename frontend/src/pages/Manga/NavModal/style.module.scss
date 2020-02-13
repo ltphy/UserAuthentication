@@ -1,7 +1,11 @@
 .modal_wrapper {
   width: 1000px;
   transition: transform .3s ease-in !important;
-  //transform: translate(0,50px)!important;
+  transform: translate(0, 50px) !important;
+
+  &:hover {
+
+  }
 }
 
 @media (min-width: 1000px) {
