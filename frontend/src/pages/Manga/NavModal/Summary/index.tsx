@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Col, Row, Button, Dropdown, Container} from "react-bootstrap";
 import style from './style.module.scss';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -7,6 +7,8 @@ import {defaultCharacters} from './summary.constants';
 
 const Summary = () => {
     const [currChars, setCurrChars] = useState<string[]>(['Conan']);
+    const charsRef = useRef<HTMLDivElement|null>(null);
+
     const removeChar = (key: number) => {
         const newChars = currChars.filter((value: string, id: number) => {
             return (id !== key);
@@ -21,7 +23,11 @@ const Summary = () => {
             setCurrChars([...currChars]);
         }
     };
-
+    useEffect(() => {
+        if (charsRef.current) {
+            charsRef.current.scrollTop = charsRef.current.scrollHeight;
+        }
+    }, [currChars.length]);
     return (
         <Container fluid>
             <Row>
@@ -29,7 +35,7 @@ const Summary = () => {
                     <label>Characters</label>
                 </Col>
                 <Col sm={5}>
-                    <div className={style.wrapper}>
+                    <div className={style.wrapper} ref={charsRef}>
                         {
                             currChars.map((value: string, key: number) => {
                                 return (
