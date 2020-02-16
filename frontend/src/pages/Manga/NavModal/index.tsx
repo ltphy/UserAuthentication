@@ -53,7 +53,6 @@ const NavModal = (props: modalProps) => {
             onHide={onHide}
             size="lg"
             centered
-            dialogClassName={style.modal_wrapper}
             aria-labelledby="contained-modal-title-vcenter"
         >
             <Modal.Header closeButton>

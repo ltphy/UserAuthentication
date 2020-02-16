@@ -1,0 +1,23 @@
+.wrapper {
+  padding: 10px;
+  border: 1px solid #afafaf;
+  margin-top: 10px;
+  border-radius: 4px;
+  position: relative;
+  width: auto;
+  overflow: auto;
+  overflow-x: hidden;
+  height: 150px;
+
+  .char_box {
+
+    border: 1px solid #afafaf;
+    border-radius: 4px;
+    width: auto;
+    padding: 10px;
+
+    &:not(:first-child) {
+      margin-top: 10px;
+    }
+  }
+}
