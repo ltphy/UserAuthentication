@@ -5,6 +5,7 @@ import DropZone from "./DropZone";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle} from "@fortawesome/free-regular-svg-icons";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
+import FileList from "./FileList";
 
 export interface Database {
     folderName: string;
@@ -106,6 +107,14 @@ const DragonBall = () => {
 
 
     };
+
+    const removeFile = (key: number) => {
+        const newFiles = files.filter((value: File, index: number) => {
+            return key !== index;
+        });
+        setFiles(newFiles);
+    };
+
     return (
         <Container fluid>
             <Row className={"justify-content-md-center"}>
@@ -120,11 +129,7 @@ const DragonBall = () => {
                                 <Row className={"justify-content-md-center"}>
                                     <div className={style.files_container}>
                                         <Col>
-                                            {
-                                                files.map((file: File, index: number) => {
-                                                    return (<Row key={index}>{file.name}</Row>);
-                                                })
-                                            }
+                                            <FileList files={files} removeFile={removeFile}/>
                                         </Col>
                                     </div>
                                 </Row>
