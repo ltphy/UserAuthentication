@@ -10,7 +10,7 @@ const Manga = ({match, location}: RouteComponentProps) => {
     return (
         <Container fluid>
             <Row className={style.wrapper}>
-                <Col md={3} xs={4} className={style.menu_container}>
+                <Col md={2} xs={4} className={style.menu_container}>
                     {
                         routes.map((route, key) => {
                             return (
@@ -22,7 +22,7 @@ const Manga = ({match, location}: RouteComponentProps) => {
                             );
                         })}
                 </Col>
-                <Col md={9} xs={8} className={style.info_container}>
+                <Col md={10} xs={8} className={style.info_container}>
                     {/*{firstPage&&(<Redirect exact from= '/manga' to={'/manga/conan'}/>)}*/}
                     <Switch>
                         {

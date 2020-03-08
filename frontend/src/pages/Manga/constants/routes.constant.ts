@@ -1,5 +1,6 @@
 import OnePiece from "../pages/OnePiece";
 import Conan from "../pages/Conan";
+import DragonBall from "../pages/DragonBall";
 
 export interface IRouter {
     component: any;
@@ -23,5 +24,11 @@ export const routes: IRouter[] = [
         title: "One Piece",
         showHeaderNavBar: true,
         path: "/one-piece"
+    },   {
+        component: DragonBall,
+        isPrivate: false,
+        title: "Dragon Ball",
+        showHeaderNavBar: true,
+        path: "/dragon-ball"
     },
 ];
