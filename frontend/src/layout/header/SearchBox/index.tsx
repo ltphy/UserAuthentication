@@ -9,14 +9,32 @@ interface searchBoxProps {
 }
 
 const SearchBox = (props: searchBoxProps) => {
-    const inputRef = useRef<HTMLInputElement>();
-    const searchBtnRef = useRef<HTMLButtonElement>();
+    const inputRef = useRef<HTMLInputElement | null>(null);
+    const searchBtnRef = useRef<HTMLDivElement|null>(null);
     useEffect(() => {
+        const enterValue = (event: KeyboardEvent ) =>{
+            if(event.keyCode ===13|| event.key==="Enter") {
+                if(searchBtnRef.current) {
+                    searchBtnRef.current.click();
+                }
 
+            }
+        };
+
+        if(inputRef.current) {
+            inputRef.current.addEventListener("keyup",enterValue);
+        }
     }, []);
+
     const searchValue = (event: ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         if (value) {
+            props.searchValue(value);
+        }
+    };
+    const onClickSearch = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) =>{
+        if(inputRef.current) {
+            const value = inputRef.current.value;
             props.searchValue(value);
         }
     };
@@ -30,10 +48,11 @@ const SearchBox = (props: searchBoxProps) => {
                        autoComplete="off"
                        autoCorrect="off"
                        onChange={searchValue}
+                       ref={inputRef}
                 />
 
             </Col>
-            <Col md={"auto"} className={style.btn_wrapper}>
+            <Col md={"auto"} className={style.btn_wrapper} ref={searchBtnRef as any} onClick={onClickSearch}>
                 <FontAwesomeIcon icon={faSearch}/>
 
             </Col>
