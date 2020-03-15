@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import {LinkContainer} from 'react-router-bootstrap';
 import {Navbar, Nav, Form, Button, Col, Row, NavDropdown, FormControl} from "react-bootstrap";
 import {routes, IRouter} from '../../constants/routes.constants';
@@ -6,13 +6,19 @@ import style from './style.module.scss';
 import {withRouter} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import SearchBox from "./SearchBox";
 //create a header nav bar to link route
 
 const Header = () => {
+
+    const enterSearchValue = (value:string) => {
+        console.log(value);
+    };
+
     return (
-        <Navbar bg="dark" expand="lg" variant={"dark"} sticky={"top"}>
+        <Navbar expand="lg" sticky={"top"} variant={"light"} className={style.navbar_wrapper}>
             <LinkContainer to="/">
-                <Navbar.Brand className={style.title}>
+                <Navbar.Brand>
                     Manga Characters
                 </Navbar.Brand>
             </LinkContainer>
@@ -33,26 +39,10 @@ const Header = () => {
                     }
                 </Nav>
 
-                <div className={style.search_wrapper}>
-                    <div className={style.search_field}>
-                        <input type="text"
-                               placeholder="Search"
-                               className={style.search_box}
-                               autoComplete="off"
-                               autoCorrect="off"
-                        />
 
-                    </div>
-                    <button
-                        className={style.btn_wrapper}>
-                        <div className={style.btn_search}>
-                            <FontAwesomeIcon icon={faSearch}/>
-                        </div>
-                    </button>
-                </div>
-            </Navbar.Collapse>
+0            </Navbar.Collapse>
 
-
+            <SearchBox searchValue={enterSearchValue}/>
         </Navbar>
     );
 

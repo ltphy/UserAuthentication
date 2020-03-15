@@ -20,6 +20,22 @@ const DragonBall = () => {
     const [progress, setProgress] = useState<number>(0);
     const progressRef = useRef<number>(0);
     const startUploading = useRef<NodeJS.Timeout | null>(null);
+    const inputRef = useRef<HTMLInputElement | null>(null);
+    const uploadBtnRef = useRef<HTMLButtonElement | null>(null);
+
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.addEventListener("keyup", (event) => {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    if (uploadBtnRef.current) {
+                        uploadBtnRef.current.click();
+                    }
+
+                }
+            });
+        }
+    }, []);
 
     const onFilesAdded = (file: File[]) => {
         const newFiles = [...files, ...file];
@@ -86,10 +102,12 @@ const DragonBall = () => {
         } else {
             return (
                 <Button className={style.upload_button}
-                        variant={"outline-success"} onClick={() => {
-                    uploadingFiles()
-                }}
+
+                        onClick={() => {
+                            uploadingFiles()
+                        }}
                         disabled={files.length < 0 || uploading}
+                        ref={uploadBtnRef as any}
                 >Uploading</Button>
             )
         }
@@ -114,7 +132,10 @@ const DragonBall = () => {
         });
         setFiles(newFiles);
     };
+    const changeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+        console.log(event.target.value);
 
+    };
     return (
         <Container fluid>
             <Row className={"justify-content-md-center"}>
@@ -142,9 +163,18 @@ const DragonBall = () => {
                                     </Col>
                                 </Row>
                                 <Row className={"justify-content-md-center"}>
-                                    {
-                                        renderButton()
-                                    }
+                                    <Row>
+                                        <Col>
+                                            <input onChange={changeValue} ref={inputRef}/>
+                                        </Col>
+                                        <Col>
+                                            {
+                                                renderButton()
+                                            }
+                                        </Col>
+
+                                    </Row>
+
                                 </Row>
                             </Col>
                         </Row>
