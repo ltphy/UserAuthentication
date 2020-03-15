@@ -10,20 +10,25 @@ interface searchBoxProps {
 
 const SearchBox = (props: searchBoxProps) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
-    const searchBtnRef = useRef<HTMLDivElement|null>(null);
+    const searchBtnRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
-        const enterValue = (event: KeyboardEvent ) =>{
-            if(event.keyCode ===13|| event.key==="Enter") {
-                if(searchBtnRef.current) {
+        const enterValue = (event: KeyboardEvent) => {
+            if (event.keyCode === 13 || event.key === "Enter") {
+                if (searchBtnRef.current) {
                     searchBtnRef.current.click();
                 }
 
             }
         };
 
-        if(inputRef.current) {
-            inputRef.current.addEventListener("keyup",enterValue);
+        if (inputRef.current) {
+            inputRef.current.addEventListener("keyup", enterValue);
         }
+        return (() => {
+            if (inputRef.current) {
+                inputRef.current.removeEventListener("keyup", enterValue);
+            }
+        });
     }, []);
 
     const searchValue = (event: ChangeEvent<HTMLInputElement>) => {
@@ -32,8 +37,8 @@ const SearchBox = (props: searchBoxProps) => {
             props.searchValue(value);
         }
     };
-    const onClickSearch = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) =>{
-        if(inputRef.current) {
+    const onClickSearch = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (inputRef.current) {
             const value = inputRef.current.value;
             props.searchValue(value);
         }
