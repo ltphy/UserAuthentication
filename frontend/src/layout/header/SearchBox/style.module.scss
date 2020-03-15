@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 0px;
+    width: 250px;
     transition: width 0.4s linear;
 
     .search_box {
@@ -28,11 +28,11 @@
     background: white !important;
     color: #e74c3c !important;
   }
-
-  &:hover > .search_field {
-    width: 250px;
-    transition: width 0.4s linear;
-  }
+  //
+  //&:hover > .search_field {
+  //  width: 250px;
+  //  transition: width 0.4s linear;
+  //}
 
 
   .btn_wrapper {

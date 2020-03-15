@@ -13,6 +13,7 @@ interface modalProps {
 
     updateUserInfoList(): void;
 
+    showDescription(value: string): void;
 }
 
 const NavModal = (props: modalProps) => {
@@ -23,7 +24,7 @@ const NavModal = (props: modalProps) => {
         if (modal) {
             setPanel(NavPanels[0]);
         }
-    },[modal]);
+    }, [modal]);
 
     const selectPanel = (selectCallback: string) => {
         console.log(selectCallback);
@@ -45,6 +46,10 @@ const NavModal = (props: modalProps) => {
     const saveValue = () => {
         setUserInfo(userInfo);
         props.updateUserInfoList();
+    };
+    const changeDescription = (value: string) => {
+        console.log("2", value);
+        props.showDescription(value);
     };
 
     return (
@@ -80,7 +85,8 @@ const NavModal = (props: modalProps) => {
                             }
                         </Nav>
                         <Row className={style.nav_contents}>
-                            {panel && <panel.component changeValue={changeValue} userInfo={defaultUserInfo}/>}
+                            {panel && <panel.component changeValue={changeValue} userInfo={defaultUserInfo}
+                                                       onChangeDescription={changeDescription}/>}
                         </Row>
                     </Col>
                 </Row>

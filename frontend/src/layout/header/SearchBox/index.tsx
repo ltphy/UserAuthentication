@@ -11,6 +11,7 @@ interface searchBoxProps {
 const SearchBox = (props: searchBoxProps) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
     const searchBtnRef = useRef<HTMLDivElement | null>(null);
+
     useEffect(() => {
         const enterValue = (event: KeyboardEvent) => {
             if (event.keyCode === 13 || event.key === "Enter") {
@@ -59,7 +60,6 @@ const SearchBox = (props: searchBoxProps) => {
             </Col>
             <Col md={"auto"} className={style.btn_wrapper} ref={searchBtnRef as any} onClick={onClickSearch}>
                 <FontAwesomeIcon icon={faSearch}/>
-
             </Col>
         </Row>
     );

@@ -20,7 +20,8 @@ const Conan = ({match}: RouteComponentProps) => {
     const setGlobalSpinner = useContext(GlobalSpinnerActionContext);
     const [user, setUser] = useState<string>('');
     const [alertModal, setAlertModal] = useState<boolean>(false);
-    const errors = ['Tab1', 'Tab2'];
+
+    const [description, setDescription] = useState<string>('');
     const showNavModal = () => {
         showModal(true);
     }
@@ -41,9 +42,14 @@ const Conan = ({match}: RouteComponentProps) => {
                 setUser(res);
             }).catch((error) => {
                 console.log(error);
-            })
+            });
         setGlobalSpinner(false);
-    }
+    };
+
+    const showDescription = (value: string) => {
+        console.log("here", value);
+        setDescription(value);
+    };
 
     return (
         <Container fluid>
@@ -57,6 +63,7 @@ const Conan = ({match}: RouteComponentProps) => {
                     }}
                               userInfo={userInfoList[0]}
                               updateUserInfoList={updateUserInfoList}
+                              showDescription={showDescription}
                     />
                 </Row>
                 <Row className={"justify-content-center mt-10"}>
@@ -98,6 +105,9 @@ const Conan = ({match}: RouteComponentProps) => {
                             </Button>
                         </Modal.Footer>
                     </Modal>
+                </Row>
+                <Row className={"mt-10"}>
+                    <div>{description}</div>
                 </Row>
             </Col>
         </Container>
