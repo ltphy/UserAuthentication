@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {Button, Col, Container, Modal, Row} from "react-bootstrap";
 import NavModal from "../../NavModal";
 import {API} from "../../constants/home.constant";
@@ -11,6 +11,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTimesCircle} from '@fortawesome/free-regular-svg-icons';
 import {IconProp, library} from '@fortawesome/fontawesome-svg-core';
 import {faTimes} from '@fortawesome/free-solid-svg-icons';
+import {countErrors} from "../../../../services/xml.service";
 
 library.add(faTimesCircle as any);
 const Conan = ({match}: RouteComponentProps) => {
@@ -20,11 +21,19 @@ const Conan = ({match}: RouteComponentProps) => {
     const setGlobalSpinner = useContext(GlobalSpinnerActionContext);
     const [user, setUser] = useState<string>('');
     const [alertModal, setAlertModal] = useState<boolean>(false);
+    const validateErrorsRef = useRef<boolean[]>([]);
+
+    useEffect(() => {
+        const count = countErrors(validateErrorsRef.current);
+        console.log(validateErrorsRef.current);//why in code work not working?
+        console.log(count);
+    }, []);
 
     const [description, setDescription] = useState<string>('');
     const showNavModal = () => {
         showModal(true);
-    }
+    };
+
     useEffect(() => {
         fetchGitHub();
 
@@ -112,5 +121,5 @@ const Conan = ({match}: RouteComponentProps) => {
             </Col>
         </Container>
     );
-}
+};
 export default Conan;

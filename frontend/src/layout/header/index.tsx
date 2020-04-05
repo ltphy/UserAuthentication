@@ -11,12 +11,12 @@ import SearchBox from "./SearchBox";
 
 const Header = () => {
 
-    const enterSearchValue = (value:string) => {
+    const enterSearchValue = (value: string) => {
         console.log(value);
     };
 
     return (
-        <Navbar expand="lg" sticky={"top"} variant={"light"} className={style.navbar_wrapper}>
+        <Navbar bg={"dark"} expand="lg" sticky={"top"} variant={"dark"} className={style.navbar_wrapper}>
             <LinkContainer to="/">
                 <Navbar.Brand>
                     Manga Characters
@@ -28,23 +28,45 @@ const Header = () => {
                 <Nav className={"mr-auto"}>
                     {
                         routes.map((value: IRouter, key: number) => {
-
-                            return (value.showHeaderNavBar &&
-                                <LinkContainer to={value.path} key={key.toString()}>
-                                    <Nav.Link>
-                                        {value.title}
-                                    </Nav.Link>
-                                </LinkContainer>);
+                            if (value.title !== 'Sign Up' && value.title !== 'Sign In') {
+                                return (value.showHeaderNavBar &&
+                                    <LinkContainer to={value.path} key={key.toString()}>
+                                        <Nav.Link>
+                                            {value.title}
+                                        </Nav.Link>
+                                    </LinkContainer>);
+                            }
                         })
                     }
                 </Nav>
-
-
-0            </Navbar.Collapse>
+                <Nav className={style.right_bar}>
+                    {
+                        routes.map((value: IRouter, key: number) => {
+                            if (value.title === 'Sign In') {
+                                return (value.showHeaderNavBar &&
+                                    <LinkContainer to={value.path} key={key.toString()}>
+                                        <Nav.Link className={style.sign_in_wrapper}>
+                                            <span className={style.sign_in_text}>{value.title}</span>
+                                        </Nav.Link>
+                                    </LinkContainer>
+                                );
+                            } else if (value.title === 'Sign Up') {
+                                return (value.showHeaderNavBar &&
+                                    <LinkContainer to={value.path} key={key.toString()}>
+                                        <Nav.Link>
+                                            <Button variant={'outline-secondary'}>{value.title}</Button>
+                                        </Nav.Link>
+                                    </LinkContainer>
+                                );
+                            }
+                        })
+                    }
+                </Nav>
+            </Navbar.Collapse>
 
             <SearchBox searchValue={enterSearchValue}/>
+
         </Navbar>
     );
-
-}
+};
 export default withRouter(Header);

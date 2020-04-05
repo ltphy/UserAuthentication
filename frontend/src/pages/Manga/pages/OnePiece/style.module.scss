@@ -35,15 +35,16 @@
   height: 100px;
   margin-left: 100px;
   display: inline-block;
+
   .container1:hover & {
-    transform: rotate(360deg) scale(1.5);
+    transform: translateY(100px) scale(0.5);
   }
 }
 
 .square1 {
   @extend .square;
   background-color: blueviolet;
-  transition: all 1.5s linear ;
+  transition: all 1.5s linear;
 }
 
 .square2 {
@@ -58,6 +59,7 @@
   width: 100px;
   height: 100px;
   transition: transform 1s linear;
+
   &:hover {
     transform: skewX(45deg);
   }

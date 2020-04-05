@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 
-const Home = ({match}: RouteComponentProps) => {
+const Home = () => {
+    useEffect(() => {
+        console.log("here");
+    }, []);
     return (<div>Home</div>);
-}
+};
 export default withRouter(Home);

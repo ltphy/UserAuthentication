@@ -22,19 +22,24 @@ const DragonBall = () => {
     const startUploading = useRef<NodeJS.Timeout | null>(null);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const uploadBtnRef = useRef<HTMLButtonElement | null>(null);
+    const registerEnterEvent = (event: KeyboardEvent) => {
+        if (event.keyCode === 13 || event.key === "Enter") {
+            event.preventDefault();
+            if (uploadBtnRef.current) {
+                uploadBtnRef.current.click();
+            }
 
+        }
+    };
     useEffect(() => {
         if (inputRef.current) {
-            inputRef.current.addEventListener("keyup", (event) => {
-                if (event.keyCode === 13) {
-                    event.preventDefault();
-                    if (uploadBtnRef.current) {
-                        uploadBtnRef.current.click();
-                    }
-
-                }
-            });
+            inputRef.current.addEventListener("keyup", registerEnterEvent);
         }
+        return (() => {
+            if (inputRef.current) {
+                inputRef.current.removeEventListener("keyup",registerEnterEvent);
+            }
+        })
     }, []);
 
     const onFilesAdded = (file: File[]) => {

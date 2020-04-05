@@ -84,6 +84,7 @@ const DropZone = (props: dropZoneProps) => {
                    onClick={onClick}
                    className={style.file_input}
                    type={'file'}
+                   accept=".db,.sql"
             />
             <FontAwesomeIcon icon={faUpload} size={'3x'}/>
             <span className={"mt-5"}>Drop and drop files here</span>

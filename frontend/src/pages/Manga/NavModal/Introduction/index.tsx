@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {UserInfo} from '../../../../models/user_info.model';
-import {Container, Row, Col} from "react-bootstrap";
+import {Container, Row, Col, Form} from "react-bootstrap";
+import style from './style.module.scss';
 
 interface introductionProps {
     userInfo: UserInfo;
@@ -38,7 +39,12 @@ const Introduction = (props: introductionProps) => {
                     <h4>Description</h4>
                 </Row>
                 <Row>
-                    <textarea rows={5} cols={50} onChange={changeDescription} defaultValue={defaultValue}/>
+                    <Form.Control className={style.description}
+                                  as={"textarea"}
+                                  rows={5}
+                                  cols={50}
+                                  onChange={changeDescription}
+                                  defaultValue={defaultValue}/>
                 </Row>
             </Col>
         </Container>
