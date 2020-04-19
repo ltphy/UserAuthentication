@@ -30,11 +30,6 @@ const SignIn = () => {
     };
 
     useEffect(() => {
-        const a = [1, 2, 3];
-        a.forEach((value, index: number) => {
-            bugArray[index] = value;
-        });
-        console.log(bugArray);
         if (emailRef.current) {
             emailRef.current.addEventListener("keyup", registerEnterEvent);
         }
@@ -114,11 +109,15 @@ const SignIn = () => {
                 console.log("Value", event.target.value);
                 if (event.target.value === "") {
                     setEmailInputClick(false);
+                } else {
+
                 }
                 break;
             case 'Password':
                 if (event.target.value === "") {
                     setPasswordInputClick(false);
+                } else {
+
                 }
                 break;
         }
@@ -138,45 +137,38 @@ const SignIn = () => {
                     <Col className={style.login_wrapper}>
                         <Row className={style.password_wrap}>
                             <Col>
-
-                                <div className={emailInputClick ? style.title : style.hide_title}>Email</div>
+                                <span className={emailInputClick ? style.title : style.hide_title}>Email</span>
                                 <span className={style.input_container}>
                                     <input type={'email'}
                                            ref={emailRef}
-                                           className={emailInputClick ? style.input_border_wrapper : style.input_wrapper}
+                                           className={style.input_wrapper}
                                            onSelect={onEmailInputClick}
                                            name={'Email'}
                                            onBlur={onBlurInputText}/>
                                 </span>
-
-                            </Col>
-
-                        </Row>
-                        <Row className={'mt-4'}>
-
-                            {
-                                wrongEmail && <ErrorComponent error={"Email is not valid"}/>
-                            }
-
-                        </Row>
-                        <Row className={"mt-2" + " " + style.password_wrap}>
-                            <Col>
-                                <Row>
-                                    <div
-                                        className={passwordInputClick ? style.title : style.hide_title}
-                                    >Password
-                                    </div>
+                                <Row className={'mt-4'}>
+                                    {
+                                        wrongEmail && <ErrorComponent error={"Email is not valid"}/>
+                                    }
                                 </Row>
-                                <Row className={style.input_container}>
+                            </Col>
+                        </Row>
+
+                        <Row className={style.password_wrap}>
+                            <Col className={"justify-content-md-center"}>
+                                <span className={passwordInputClick ? style.title : style.hide_title}>Password</span>
+
+                                <div className={style.input_container}>
                                     <input type={'password'}
                                            ref={passwordRef}
-                                           className={passwordInputClick ? style.input_border_wrapper : style.input_wrapper}
+                                           className={style.input_wrapper}
                                            name={"Password"}
                                            onBlur={onBlurInputText}
                                            onSelect={onPasswordInputClick}
                                     />
-                                    <div className={"input-group-prepend"}>
-                                        <span className={style.show_pw_btn} onClick={onClickShowPassword}>
+                                    <div className={"input-group-append ml-2"}>
+                                        <span className={style.show_pw_btn}
+                                              onClick={onClickShowPassword}>
                                             {
                                                 showPassword ? <FontAwesomeIcon icon={faEyeSlash as IconProp}/> :
                                                     <FontAwesomeIcon icon={faEye as IconProp}/>
@@ -185,7 +177,7 @@ const SignIn = () => {
                                         </span>
                                     </div>
 
-                                </Row>
+                                </div>
                                 <Row>
                                     {
                                         (wrongPassword && <ErrorComponent error={"Password cannot be empty"}/>)
