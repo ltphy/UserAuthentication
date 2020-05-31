@@ -21,11 +21,7 @@ const setCookie = (key: string, value: string, exdays: number) => {
     const date = new Date();
     //Sets the milliseconds value in the Date object using local time.
     date.setTime(date.getTime() + (exdays * 1000 * 60 * 60 * 24));
-    console.log("EXPIRES", date.toUTCString());
-    date.setDate(date.getTime() + (exdays));
-    console.log("EXPIRES", date.toUTCString());
     const expires = "expires=" + date.toUTCString();
-
     document.cookie = key + "=" + value + ";" + expires + ";path=/";
 };
 const deleteCookie = (cname?: string) => {
@@ -37,10 +33,7 @@ const deleteCookie = (cname?: string) => {
         if (cname) {
             const name = cname + "=;";
             document.cookie = name + "expires=" + epochTime.toUTCString() + ";path=/";
-        } else {
-
         }
-
     }
 
 };

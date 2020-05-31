@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent, useContext, useState} from 'react';
 import {LinkContainer} from 'react-router-bootstrap';
 import {Navbar, Nav, Form, Button, Col, Row, NavDropdown, FormControl} from "react-bootstrap";
 import {routes, IRouter} from '../../constants/routes.constants';
@@ -7,12 +7,60 @@ import {withRouter} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import SearchBox from "./SearchBox";
+import {AuthenticateFunctionContext, AuthUserContext} from "../../context/auth.context";
 //create a header nav bar to link route
 
 const Header = () => {
+    const useAuthFnc = useContext(AuthenticateFunctionContext);
+    const authIno = useContext(AuthUserContext);
 
     const enterSearchValue = (value: string) => {
         console.log(value);
+    };
+
+    const signOut = () => {
+        useAuthFnc.clearAuth();
+    };
+
+    const renderAuthentication = () => {
+        if (!useAuthFnc.isAuthenticated()) {
+            return (
+                routes.map((value: IRouter, key: number) => {
+                    if (value.title === 'Sign In') {
+                        return (value.showHeaderNavBar &&
+                            <LinkContainer to={value.path} key={key.toString()}>
+                                <Nav.Link className={style.sign_in_wrapper}>
+                                    <span className={style.sign_in_text}>{value.title}</span>
+                                </Nav.Link>
+                            </LinkContainer>
+                        );
+                    } else if (value.title === 'Sign Up') {
+                        return (value.showHeaderNavBar &&
+                            <LinkContainer to={value.path} key={key.toString()}>
+                                <Nav.Link>
+                                    <Button variant={'outline-secondary'}>{value.title}</Button>
+                                </Nav.Link>
+                            </LinkContainer>
+                        );
+                    }
+                })
+
+            );
+        } else {
+            return (
+                <div>
+                    <span className={style.name}>
+                        Welcome {authIno.user.name}!
+                    </span>
+                    <Button variant={"outline-secondary"} onClick={signOut}>
+                        Log Out
+                    </Button>
+
+                </div>
+
+            );
+        }
+
     };
 
     return (
@@ -40,27 +88,7 @@ const Header = () => {
                     }
                 </Nav>
                 <Nav className={style.right_bar}>
-                    {
-                        routes.map((value: IRouter, key: number) => {
-                            if (value.title === 'Sign In') {
-                                return (value.showHeaderNavBar &&
-                                    <LinkContainer to={value.path} key={key.toString()}>
-                                        <Nav.Link className={style.sign_in_wrapper}>
-                                            <span className={style.sign_in_text}>{value.title}</span>
-                                        </Nav.Link>
-                                    </LinkContainer>
-                                );
-                            } else if (value.title === 'Sign Up') {
-                                return (value.showHeaderNavBar &&
-                                    <LinkContainer to={value.path} key={key.toString()}>
-                                        <Nav.Link>
-                                            <Button variant={'outline-secondary'}>{value.title}</Button>
-                                        </Nav.Link>
-                                    </LinkContainer>
-                                );
-                            }
-                        })
-                    }
+                    {renderAuthentication()}
                 </Nav>
             </Navbar.Collapse>
 

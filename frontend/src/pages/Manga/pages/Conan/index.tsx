@@ -27,6 +27,7 @@ const Conan = ({match}: RouteComponentProps) => {
         const count = countErrors(validateErrorsRef.current);
         console.log(validateErrorsRef.current);//why in code work not working?
         console.log(count);
+        console.log("Match", match);
     }, []);
 
     const [description, setDescription] = useState<string>('');
@@ -122,4 +123,4 @@ const Conan = ({match}: RouteComponentProps) => {
         </Container>
     );
 };
-export default Conan;
+export default withRouter(Conan);

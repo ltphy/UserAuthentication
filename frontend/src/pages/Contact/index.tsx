@@ -7,5 +7,5 @@ const Contact = ({match}: RouteComponentProps) => {
         console.log("here");
     }, []);
     return (<div>Contact</div>);
-}
+};
 export default withRouter(Contact);

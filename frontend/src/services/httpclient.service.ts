@@ -1,4 +1,4 @@
-import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
+import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
 import * as H from 'history';
 import HttpStatusCode from 'http-status-codes';
 import CookieNames from '../constants/cookie.constants';
@@ -30,6 +30,11 @@ class HttpClientService {
             headers: this.getHeaders()
         }).then((res: AxiosResponse<T>): Promise<T> => {
             return this.handleAxiosResponse<T>(res);
+        }).catch((reason:AxiosError<T>):Promise<T> => {
+            if(reason.response){
+                return this.handleAxiosResponse<T>( reason.response);
+            }
+            throw (reason);
         });
     };
 
@@ -72,13 +77,16 @@ class HttpClientService {
         const requestConfig = {headers};
         const instance = axios.create(requestConfig);
         //use interceptors what is this =>>
+        //ranging from 200 return response, outside range of 2xx return response error
         instance.interceptors.response.use((response): AxiosResponse => response,
             (error: any): any => {
                 //dosth with reponse error
-                if (error.response) {
-                    return Promise.reject(error);
-                }
-                throw (error);
+                // if (error.response) {
+                //     //need to access response
+                //     return Promise.reject(error);
+                // }
+                // throw(error);
+                return error.response;
             });
         //the request intercepter do sth before request is sent
         //do sth with the response data =>
@@ -89,9 +97,9 @@ class HttpClientService {
     private static getHeaders(paramsTokens?: string) {
         //set paramtoken (validing from server or get from cookie)
 
-        const token = paramsTokens || Cookie.getCookie("Token");
+        const token = paramsTokens || Cookie.getCookie(CookieNames.TOKEN);
         return {
-            ...this._instance.defaults.headers || {[process.env.REACT_APP_TOKEN_HEADER_KEY as string]: token}
+            ...this._instance.defaults.headers, [process.env.REACT_APP_TOKEN_HEADER_KEY as string]: token
         }
     }
 
@@ -102,8 +110,8 @@ class HttpClientService {
 
     //to validate the reponse
     private static handleAxiosResponse<T>(res: AxiosResponse<T>): Promise<T> {
-        //unauthorizd
         if (res.status === HttpStatusCode.UNAUTHORIZED) {
+            console.log("UNAUTHORIZED", res);
             if (this.history) {
                 this.deleteAuthCookie();
                 this.history.push('/sign-up');
@@ -115,6 +123,7 @@ class HttpClientService {
         }
         return Promise.resolve<T>(res.data);
     };
+
 
     //to validate the reponse
     private static handleResponse(res: Response): Promise<Response> {
@@ -131,12 +140,6 @@ class HttpClientService {
         }
         return Promise.resolve(res);
     };
-
-    private static handleError() {
-
-    }
-
-
 }
 
 

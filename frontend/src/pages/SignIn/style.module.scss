@@ -25,7 +25,6 @@
 
         .hide_title {
           position: absolute;
-          padding: 7px 10px;
           transition: 300ms all ease-in-out;
           color: #afafaf;
           width: fit-content;
@@ -35,12 +34,20 @@
         .title {
           position: absolute;
           width: fit-content;
-          padding: 2px;
           background-color: white;
           margin-left: -5px;
           color: hsl(89, 43%, 51%);
           transform: translateY(-12px) translateX(5px) scale(0.9);
           transition: 300ms all ease-in-out;
+        }
+
+        .filled_title {
+          @extend .title;
+          color: #afafaf !important;
+        }
+
+        .error_text {
+          height: 10px;
         }
 
         .input_container {
@@ -51,16 +58,15 @@
             border-radius: 5px;
             border: 1px solid gray;
             padding: 7px 11px;
-            transition: box-shadow ease-in-out 500ms;
+            transition: box-shadow ease-in-out 300ms;
 
             &:focus {
               //margin: -1px;
               //border-color: transparent;
               border: 1px solid hsl(89, 43%, 51%);
               box-shadow: 0 0 3px 2px hsl(89, 43%, 51%);
-              transition: ease-in-out 500ms;
+              transition: ease-in-out 300ms;
               outline: none;
-
             }
 
             .user-is-tabbing &:focus {

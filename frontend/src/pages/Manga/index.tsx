@@ -5,8 +5,14 @@ import {withRouter, RouteComponentProps, Route, Link, Switch, useHistory, Redire
 import {routes, IRouter} from './constants/routes.constant';
 import {LinkContainer} from 'react-router-bootstrap';
 
-const Manga = ({match, location}: RouteComponentProps) => {
+interface MangaProps extends RouteComponentProps {
+    name: string;
+}
 
+const Manga = (mangaProps: MangaProps) => {
+    useEffect(() => {
+        console.log("name", mangaProps.name);
+    }, []);
     return (
         <Container fluid>
             <Row className={style.wrapper}>
@@ -14,8 +20,9 @@ const Manga = ({match, location}: RouteComponentProps) => {
                     {
                         routes.map((route, key) => {
                             return (
-                                <LinkContainer to={`${match.url}${route.path}`} key={key.toString()} className={style.link_wrapper}>
-                                    <Nav.Link className={"text-secondary"} >
+                                <LinkContainer to={`${mangaProps.match.url}${route.path}`} key={key.toString()}
+                                               className={style.link_wrapper}>
+                                    <Nav.Link className={"text-secondary"}>
                                         {route.title}
                                     </Nav.Link>
                                 </LinkContainer>
@@ -32,8 +39,8 @@ const Manga = ({match, location}: RouteComponentProps) => {
                                     return <div></div>
                                 } else {
                                     return (
-                                        <Route path={`${match.url}${route.path}`}
-                                               exact={route.path ==='/'}
+                                        <Route path={`${mangaProps.match.url}${route.path}`}
+                                               exact={route.path === '/'}
                                                key={index.toString()}
                                                component={route.component}
                                         />
@@ -41,7 +48,7 @@ const Manga = ({match, location}: RouteComponentProps) => {
                                 }
                             })
                         }
-                        <Redirect exact to={{pathname:'/manga/conan', state: {from: '/manga'}}}/>
+                        <Redirect exact to={{pathname: '/manga/conan', state: {from: '/manga'}}}/>
 
                     </Switch>
                 </Col>
@@ -49,5 +56,5 @@ const Manga = ({match, location}: RouteComponentProps) => {
 
         </Container>
     );
-}
+};
 export default withRouter(Manga);

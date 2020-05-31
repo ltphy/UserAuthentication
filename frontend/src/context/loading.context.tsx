@@ -18,4 +18,4 @@ export const GlobalSpinnerProvider = (props: spinnerProps) => {
             </GlobalSpinnerActionContext.Provider>
         </GlobalSpinnerContext.Provider>
     )
-}
+};

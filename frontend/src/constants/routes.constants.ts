@@ -10,7 +10,7 @@ export interface IRouter {
     title: string,
     showHeaderNavBar: boolean,
     path: string,
-};
+}
 
 export const routes: IRouter[] = [
     {
@@ -22,14 +22,14 @@ export const routes: IRouter[] = [
     },
     {
         component: Manga,
-        isPrivate: false,
+        isPrivate: true,
         title: "Manga",
         showHeaderNavBar: true,
         path: "/manga"
     },
     {
         component: Contact,
-        isPrivate: false,
+        isPrivate: true,
         title: "Contact",
         showHeaderNavBar: true,
         path: "/contact"
