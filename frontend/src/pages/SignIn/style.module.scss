@@ -1,0 +1,114 @@
+.form_layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  .form_wrapper {
+    margin-top: 4rem;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.08);
+    border: 1px solid #ececec;
+    border-radius: 10px;
+    padding: 30px;
+    height: 370px;
+
+    .login_wrapper {
+      padding: 20px;
+      margin-top: 20px;
+      font-size: 14px;
+
+
+      .password_wrap {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .hide_title {
+          position: absolute;
+          transition: 300ms all ease-in-out;
+          color: #afafaf;
+          width: fit-content;
+          background: transparent;
+        }
+
+        .title {
+          position: absolute;
+          width: fit-content;
+          background-color: white;
+          margin-left: -5px;
+          color: hsl(89, 43%, 51%);
+          transform: translateY(-12px) translateX(5px) scale(0.9);
+          transition: 300ms all ease-in-out;
+        }
+
+        .filled_title {
+          @extend .title;
+          color: #afafaf !important;
+        }
+
+        .error_text {
+          height: 10px;
+        }
+
+        .input_container {
+          display: flex;
+          flex-direction: row;
+
+          .input_wrapper {
+            border-radius: 5px;
+            border: 1px solid gray;
+            padding: 7px 11px;
+            transition: box-shadow ease-in-out 300ms;
+
+            &:focus {
+              //margin: -1px;
+              //border-color: transparent;
+              border: 1px solid hsl(89, 43%, 51%);
+              box-shadow: 0 0 3px 2px hsl(89, 43%, 51%);
+              transition: ease-in-out 300ms;
+              outline: none;
+            }
+
+            .user-is-tabbing &:focus {
+              border: 1px solid hsl(89, 43%, 51%);
+              box-shadow: 0 0 3px 2px hsl(89, 43%, 51%);
+              //transition: box-shadow ease-in-out 500ms;
+              outline: none;
+            }
+
+            &::placeholder {
+              font-size: 14px;
+              color: gray;
+            }
+          }
+
+          //.input_wrapper:after {
+          //  position: absolute;
+          //  top: -6px;
+          //  left: -6px;
+          //  width: calc(100% - 12px);
+          //  height: calc(100% - 12px);
+          //  border: 12px solid rgba(255, 0, 0, 0.5)
+          //
+          //}
+
+          .show_pw_btn {
+            width: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            //padding: 5px;
+            cursor: pointer;
+          }
+
+        }
+
+
+      }
+
+
+    }
+
+
+  }
+}

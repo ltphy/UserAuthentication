@@ -1,0 +1,20 @@
+.right_bar {
+  margin-left: auto;
+  margin-right: 2%;
+  //font-weight: bold;
+}
+
+.sign_in_wrapper {
+  cursor: pointer;
+  justify-content: center;
+  display: flex !important;
+  flex-direction: column;
+
+  &:hover {
+    color: white;
+  }
+}
+.name {
+  color: white;
+  margin-right: 10px;
+}

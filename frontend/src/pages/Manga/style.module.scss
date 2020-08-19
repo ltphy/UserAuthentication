@@ -1,0 +1,19 @@
+.wrapper {
+  overflow: auto;
+
+  .menu_container {
+    padding: 7px 12px;
+    position: relative;
+    .link_wrapper {
+      border: 1px solid #ececec;
+      &:not(:first-child) {
+        margin-top:5px
+      }
+    }
+  }
+
+  .info_container {
+    padding: 2rem 4rem;
+    position: relative;
+  }
+}

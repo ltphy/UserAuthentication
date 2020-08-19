@@ -1,0 +1,17 @@
+.file_wrapper {
+  border: 1px solid #fafafa;
+  border-radius: 10px;
+  background-color: #4285f4;
+  padding: 10px;
+  margin-top: 10px;
+
+  &:last-child {
+    margin-bottom: 10px;
+  }
+}
+
+.file_name {
+  color: white;
+  display: flex;
+  align-items: center;
+}
