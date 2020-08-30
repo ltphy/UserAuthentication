@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useRef} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {useHistory, withRouter} from "react-router";
 import {Button, Col, Container, Row} from "react-bootstrap";
 import style from './style.module.scss';
@@ -6,6 +6,7 @@ import {validateEmail} from "../../services/validate.service";
 import HttpClientService from "../../services/httpclient.service";
 import AuthService, {SignUpInfo} from "../../services/auth.service";
 import {AuthLogin, SetAuthenticationFnc} from "../../context/auth.context";
+import {GenericModalContext} from "../../components/ModalContext/ModalContext";
 
 const SignUp = () => {
     const emailRef = useRef<HTMLInputElement | null>(null);
@@ -14,6 +15,9 @@ const SignUp = () => {
     const rePasswordRef = useRef<HTMLInputElement | null>(null);
     const signUpBtnRef = useRef<HTMLButtonElement | null>(null);
     const setAuthContext = useContext(SetAuthenticationFnc);
+    const [errorText,setErrorText] = useState<string>();
+    const modalContext = useContext(GenericModalContext);
+
     const history = useHistory();
     const registerEnterEvent = (event: KeyboardEvent) => {
         if (event.keyCode === 13 || event.key === "Enter") {
@@ -96,8 +100,10 @@ const SignUp = () => {
                 error = true;
             }
         }
-        if (error)
-            return;
+        if (error){
+            return
+        }
+
         else {
             const signUpInfo: SignUpInfo = {
                 name: userName,
@@ -109,6 +115,9 @@ const SignUp = () => {
                 setAuthContext(res);
                 history.push('/');
 
+            }).catch((error) =>{
+                console.log(error);
+                modalContext.notifyError(error);
             });
         }
     };
@@ -117,6 +126,7 @@ const SignUp = () => {
         <Container fluid>
             <Row className={style.form_layout}>
                 <div className={style.form_wrapper}>
+
                     <Row className={"justify-content-md-center"}>
                         <h2 className={'text-center'}>Sign Up</h2>
                     </Row>

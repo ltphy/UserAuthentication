@@ -24,20 +24,34 @@ class HttpClientService {
     };
 
     //getHeaders: headers contain token
-    public static async httpPost<T>(requestUri: string, data: any, config: AxiosRequestConfig = {}): Promise<T> {
-        return this.instance.post<any, AxiosResponse<T>>(requestUri, data, {
-            ...config,
-            headers: this.getHeaders()
-        }).then((res: AxiosResponse<T>): Promise<T> => {
-            return this.handleAxiosResponse<T>(res);
-        }).catch((reason:AxiosError<T>):Promise<T> => {
+    // public static async httpPost<T>(requestUri: string, data: any, config: AxiosRequestConfig = {}): Promise<T> {
+    //     return this.instance.post<any, AxiosResponse<T>>(requestUri, data, {
+    //         ...config,
+    //         headers: this.getHeaders()
+    //     }).then((res: AxiosResponse<T>): Promise<T> => {
+    //         return this.handleAxiosResponse<T>(res);
+    //     }).catch((reason:AxiosError<T>):Promise<T> => {
+    //         if(reason.response){
+    //             return this.handleAxiosResponse<T>( reason.response);
+    //         }
+    //         throw (reason);
+    //     });
+    // };
+    public static async httpPost<T>(requestUri: string, data: any, config: AxiosRequestConfig = {}){
+        try
+            {const result = await this.instance.post<any, AxiosResponse<T>>(requestUri, data, {
+                ...config,
+                headers: this.getHeaders()
+            });
+            return this.handleAxiosResponse<T>(result);
+        }
+        catch(reason){
             if(reason.response){
                 return this.handleAxiosResponse<T>( reason.response);
             }
             throw (reason);
-        });
+        }
     };
-
     //getHeaders: headers contain token
     public static async httpPut<T>(requestUri: string, data: any, config: AxiosRequestConfig = {}): Promise<T> {
         return this.instance.put<any, AxiosResponse<T>>(requestUri, data, {
@@ -81,12 +95,12 @@ class HttpClientService {
         instance.interceptors.response.use((response): AxiosResponse => response,
             (error: any): any => {
                 //dosth with reponse error
-                // if (error.response) {
-                //     //need to access response
-                //     return Promise.reject(error);
-                // }
-                // throw(error);
-                return error.response;
+                if (error.response) {
+                    //need to access response
+                    return Promise.reject(error);
+                }
+                throw(error);
+                // return error.response;
             });
         //the request intercepter do sth before request is sent
         //do sth with the response data =>
@@ -111,7 +125,6 @@ class HttpClientService {
     //to validate the reponse
     private static handleAxiosResponse<T>(res: AxiosResponse<T>): Promise<T> {
         if (res.status === HttpStatusCode.UNAUTHORIZED) {
-            console.log("UNAUTHORIZED", res);
             if (this.history) {
                 this.deleteAuthCookie();
                 this.history.push('/sign-up');
