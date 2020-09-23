@@ -13,12 +13,13 @@ const Summary = () => {
         const newChars = currChars.filter((value: string, id: number) => {
             return (id !== key);
         });
-        setCurrChars(newChars);
+        setCurrChars([...newChars]);
     };
 
     const chooseItem = (eventKey: string) => {
         console.log(eventKey);
         if (eventKey) {
+            // currChars.unshift(eventKey);
             currChars.push(eventKey);
             setCurrChars([...currChars]);
         }
@@ -43,6 +44,7 @@ const Summary = () => {
                                         <Row>
                                             <Col sm={8}>
                                                 <small>{value}</small>
+                                                <input type="text" id={key.toString()}/>
                                             </Col>
                                             <Col sm={4}>
                                                 <Button onClick={() => {

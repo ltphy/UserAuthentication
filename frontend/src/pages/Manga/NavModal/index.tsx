@@ -112,5 +112,5 @@ const NavModal = (props: modalProps) => {
                 </Button>
             </Modal.Footer>
         </Modal>);
-}
+};
 export default NavModal;

@@ -1,0 +1,43 @@
+.container_wrapper{
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search_bar {
+  flex-direction: row;
+  height:50px;
+  width: auto;
+  .side_bar{
+    margin-right: 0px;
+    color: #4285f4;
+  }
+  .search_field{
+    background: #4285f4;
+  }
+}
+
+.travel_list {
+  flex-direction: row;
+  align-items: center;
+  overflow: auto;
+  height:200px;
+  border: 2px solid black;
+  width:100px;
+  .travel_item {
+    flex-direction: row;
+    height:50px;
+    width: auto;
+  }
+}
+.wrapper_button{
+  position: relative;
+  .plus_button {
+    position: absolute;
+    z-index: 1000;
+    bottom: 0;
+    right: 0;
+  }
+}
