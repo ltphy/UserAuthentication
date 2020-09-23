@@ -48,13 +48,13 @@ class TravelList extends React.Component<TravelListProps, TravelListState> {
     render() {
         return (
             <div className={styles.container_wrapper}>
-                <div className={"row"}>
+                <div className={"row " + styles.search_bar}>
                     <div className={"col-sm-2 "+ styles.side_bar}>
                         <FontAwesomeIcon icon={faHamburger}/>
                     </div>
                     <div className={"col-sm-10 " + styles.search_field}>
                         <input type={"text"} size={12}/>
-                        <FontAwesomeIcon icon={faSearch}/>
+                        <FontAwesomeIcon icon={faSearch} className={styles.icon_search}/>
                     </div>
                 </div>
                 <div>

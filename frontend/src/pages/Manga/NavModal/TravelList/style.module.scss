@@ -10,12 +10,19 @@
   flex-direction: row;
   height:50px;
   width: auto;
+  //visibility: hidden;
+  justify-content: center;
+  align-items: center;
   .side_bar{
-    margin-right: 0px;
     color: #4285f4;
   }
   .search_field{
     background: #4285f4;
+    padding-left: 0;
+    padding-right: 0!important;
+    .icon_search {
+      margin-left: 10px;
+    }
   }
 }
 
