@@ -21,7 +21,7 @@
     "dotenv": "^8.2.0",
     "env": "0.0.2",
     "esm": "^3.2.25",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "http-errors": "~1.6.3",
     "http-status-codes": "^1.4.0",
     "jade": "~1.11.0",
